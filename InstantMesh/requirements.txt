@@ -1,0 +1,19 @@
+pytorch-lightning==2.1.2
+gradio==3.41.2
+huggingface-hub
+einops
+omegaconf
+torchmetrics
+webdataset
+accelerate==0.31.0
+tensorboard
+PyMCubes
+trimesh
+rembg
+transformers==4.34.1
+diffusers==0.20.2
+bitsandbytes==0.45.4
+imageio[ffmpeg]
+xatlas
+plyfile
+# git+https://github.com/NVlabs/nvdiffrast/
