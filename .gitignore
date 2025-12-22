@@ -1,0 +1,28 @@
+@"
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+
+# outputs / generated
+pipeline_output/
+output/
+outputs/
+logs/
+*.mp4
+*.obj
+*.glb
+*.ply
+
+# model checkpoints
+*.ckpt
+*.pth
+*.pt
+*.bin
+
+# blender temp
+*.blend1
+"@ | Out-File -Encoding utf8 .gitignore
