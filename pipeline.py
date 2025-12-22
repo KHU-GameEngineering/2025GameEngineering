@@ -258,7 +258,7 @@ def main():
     final_out.mkdir(parents=True, exist_ok=True)
 
     # 5) InstantMesh 실행
-    ro_parser = run_original.build_parser()
+    ro_parser = run.build_parser()
     save_video_flag = bool(args.preview_video) or bool(args.auto_open_video)
 
     ro_args_list = [
@@ -281,7 +281,7 @@ def main():
     ro_args = ro_parser.parse_args(ro_args_list)
 
     print("\n[1/3] InstantMesh 실행 시작...")
-    result = run_original.run(ro_args)
+    result = run.run(ro_args)
 
     mesh_paths = result.get("mesh_paths", [])
     video_paths = result.get("video_paths", [])
@@ -312,8 +312,8 @@ def main():
         # interactive (기본)
         input_file_for_prompt = Path(mesh_paths[0]).name
         # lod_original에 같은 함수가 있으면 그걸 쓰고, 없으면 로컬 함수 사용
-        if hasattr(lod_original, "ask_processing_choice"):
-            chosen = lod_original.ask_processing_choice(input_file_for_prompt)
+        if hasattr(lod, "ask_processing_choice"):
+            chosen = lod.ask_processing_choice(input_file_for_prompt)
         else:
             chosen = ask_processing_choice(input_file_for_prompt)
 
@@ -328,9 +328,9 @@ def main():
         print(f"Output dir: {per_mesh_out}")
 
         if chosen == "low_clean":
-            lod_original.run_simple_clean(obj_path, str(per_mesh_out))
+            lod.run_simple_clean(obj_path, str(per_mesh_out))
         elif chosen == "low_refine":
-            lod_original.run_academic_upsampling(obj_path, str(per_mesh_out))
+            lod.run_academic_upsampling(obj_path, str(per_mesh_out))
         else:
             mode_map = {
                 "high_low": "LOW",
@@ -338,7 +338,7 @@ def main():
                 "high_high": "HIGH",
                 "high_all": "ALL",
             }
-            lod_original.run_smart_decimation(obj_path, str(per_mesh_out), mode_map[chosen])
+            lod.run_smart_decimation(obj_path, str(per_mesh_out), mode_map[chosen])
 
     print("\n==============================================")
     print("✓ 전체 파이프라인 완료")
